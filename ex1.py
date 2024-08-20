@@ -45,16 +45,19 @@ print(f'total amount in kilograms {kilos} and {grams} grams')
 # 3-digit code where each number is between 0 and 9
 # 4-digit code where each number is between 1 and 6
 import random
-threedigit = str(str(random.randint(0,9)) +
+threedigit = str(
     str(random.randint(0,9)) +
-    str(random.randint(0,9)))
-fourdigit = str(str(
-    random.randint(0,9)) +
-   str(random.randint(0,9)) +
     str(random.randint(0,9)) +
-    str(random.randint(0,9)))
+    str(random.randint(0,9))
+)
+fourdigit = str(
+    str(random.randint(1,6)) +
+    str(random.randint(1,6)) +
+    str(random.randint(1,6)) +
+    str(random.randint(1,6))
+)
 
-print(f'{threedigit}')
-print(f'{fourdigit}')
+print(f'3-digit code {threedigit}')
+print(f'4-digit code {fourdigit}')
 
 
