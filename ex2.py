@@ -22,3 +22,29 @@ elif cabin == 'C' or cabin == 'c':
     print(f'{cabin}: windowless cabin below the car deck.')
 else:
     print(f'invalid cabin class {cabin}')
+
+
+# Write a program that asks for the biological gender and hemoglobin value (g/l).
+# The program the notifies the user if the hemoglobin value is low, normal or high.
+# A normal hemoglobin value for adult females is between 117-155 g/l.
+# A normal hemoglobin value for adult males is between 134-167 g/l.
+
+gender = input('what gender are you: ')
+hemo = int(input('what is your hemoglobin value '))
+
+if gender == 'woman' or gender == 'female':
+    if hemo < 134:
+        print('hemoglobin levels is too low')
+    elif hemo >  167:
+           print('your hemoglobin levels is too high')
+    else:
+        print('normal hemoglobin levels')
+elif gender == 'man' or gender == 'male':
+    if hemo < 117:
+        print('hemoglobin levels is too low')
+    elif hemo >  155:
+           print('your hemoglobin levels is too high')
+    else:
+        print('normal hemoglobin levels')
+else:
+    print('not valid')
