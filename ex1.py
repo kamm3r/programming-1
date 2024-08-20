@@ -24,3 +24,37 @@ print(f'sum of the three integer {sum}')
 print(f'product of the three integer {product}')
 print(f'average of the three integer {average}')
 
+
+talent = float(input('enter talents: '))
+pounds = float(input('enter pounds: '))
+lots = float(input('enter lots: '))
+
+# 1 talent is 8,5 kg
+# 1 pounds is 425,1 g
+# 1 lots is 13.3 g
+talentToG = talent * 8500
+poundsToG = pounds * 425.1
+lotsToG = lots * 13.3
+total = talentToG + poundsToG + lotsToG
+kilos, grams = '{:,}'.format(total).split(',')
+totalkg = int(total / 1000)
+totalgrams = total
+print(f'total amount in grams {total}')
+print(f'total amount in kilograms {kilos} and {grams} grams')
+
+# 3-digit code where each number is between 0 and 9
+# 4-digit code where each number is between 1 and 6
+import random
+threedigit = str(str(random.randint(0,9)) +
+    str(random.randint(0,9)) +
+    str(random.randint(0,9)))
+fourdigit = str(str(
+    random.randint(0,9)) +
+   str(random.randint(0,9)) +
+    str(random.randint(0,9)) +
+    str(random.randint(0,9)))
+
+print(f'{threedigit}')
+print(f'{fourdigit}')
+
+
