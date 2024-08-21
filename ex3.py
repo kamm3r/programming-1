@@ -38,3 +38,21 @@ while number:
     number = input('enter a number: ')
 print('execusion stopped')
 
+# Write a game where the computer draws a random integer between 1 and 10.
+# The user tries to guess the number until they guess the right number.
+# After each guess the program prints out a text: Too high, Too low or Correct.
+# Notice that the computer must not change the number between guesses.
+
+import random
+
+guess = int(input('guess a number between 1 and 10: '))
+
+randomNumber = random.randint(1, 10)
+
+while guess != randomNumber:
+    if guess > randomNumber:
+        print('Too high')
+    if guess < randomNumber:
+        print('Too Low')
+    guess = int(input('guess a number between 1 and 10: '))
+print('Correct')
