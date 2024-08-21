@@ -71,16 +71,12 @@ retry = 0
 
 while retry != 5:
     retry += 1
-    if username != 'python' and password != 'rules':
-        username = input('enter username: ')
-        password = input('enter password: ')
     if username != 'python':
         username = input('enter username: ')
     if password != 'rules':
         password = input('enter password: ')
+    if username == 'python' and password == 'rules':
+        break
     print(f'retry count {retry}')
-if retry == 5:
-    print('Access denied')
-else:
-    print('welcome')
+print('welcome')
 
