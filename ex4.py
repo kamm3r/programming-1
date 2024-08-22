@@ -82,3 +82,21 @@ for count in range(5):
 print('cities listed')
 for city in cityArray:
     print(f'{city}')
+
+
+# Write a function that returns a random dice roll between 1 and 6.
+# The function should not have any parameters.
+# Write a main program that rolls the dice until the result is 6.
+# The main program should print out the result of each roll.
+
+count = roll = 0
+
+
+def diceRoll():
+    return  random.randint(1,6)
+
+while roll != 6:
+    count += 1
+    roll = diceRoll()
+    print(f'you rolled {roll}')
+
