@@ -1,6 +1,6 @@
 print('Hello, world!')
 
-print('"Hello", said Joe')
+print('"Hello", Marco Kammer')
 
 print('good')
 print('morning')
