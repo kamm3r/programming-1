@@ -78,3 +78,43 @@ def main():
     print(f'sum of all numbers in the list {sumOfList}')
 
 main()
+
+# Write a function that gets a list of integers as a parameter.
+# The function returns a second list that is otherwise the same
+# as the original list except that all uneven numbers have been removed.
+# For testing, write a main program where you create a list,
+# call the function, and then print out both the original
+# as well as the cut-down list.
+
+intList = [21, 54, 394, 12, 32, 34, 12, 93, 239]
+print(f'list used in next function {intList}')
+
+def removeUneven(listnumber):
+    for number in listnumber:
+        if number % 2 != 0:
+            listnumber.remove(number)
+    return listnumber
+
+print(f'remove uneven numbers from list {removeUneven(intList)}')
+
+# Write a function that receives two parameters:
+# the diameter of a round pizza in centimeters
+# and the price of the pizza in euros. The function calculates
+# and returns the unit price of the pizza per square meter.
+# The main program asks the user to enter the diameter and
+# price of two pizzas and tells the user which pizza provides
+# better value for money (which of them has a lower unit price).
+# You must use the function you wrote for calculating the unit prices.
+
+import math
+
+pizzaDiameter = float(input('pizza diameter in centimeters: '))
+pizzaPrice = float(input('pizza pice in euros: '))
+
+def goodEats(diameter, price):
+    return price / (math.pi * math.pow(diameter / 2, 2)/10000)
+
+def priceRatio():
+    print(f'cost per square meter {goodEats(pizzaDiameter, pizzaPrice)}')
+
+priceRatio()
