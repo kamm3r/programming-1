@@ -59,6 +59,22 @@ while isNegative(gallons) == False:
     liters= gallonsToLiters(gallons)
     print(f'gallons in liters {liters}')
 
+# Write a function that gets a list of integers as a parameter.
+# The function returns the sum of all the numbers in the list.
+# For testing, write a main program where you create a list,
+# call the function, and print out the value it returned.
 
+numArray = [21, 54, 394, 12, 32]
+print(f'number list {numArray}')
 
+def sumNumberArray(numberArray):
+    result = 0
+    for number in numberArray:
+        result += number
+    return result
 
+sumOfList = sumNumberArray(numArray)
+def main():
+    print(f'sum of all numbers in the list {sumOfList}')
+
+main()
