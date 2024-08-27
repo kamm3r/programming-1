@@ -32,4 +32,23 @@ else:
 
 nameTuple = "new name", "existing name"
 
+name = input('enter a name: ')
+count = 0
+nameArray = []
+if name  in nameArray:
+    print('existing name')
+else:
+    print('new name')
+if name != '':
+    nameArray.insert(count, name)
 
+while name != '':
+    name = input('enter a name: ')
+    if name == '':
+        break
+    if name  in nameArray:
+        print('existing name')
+    else:
+        print('new name')
+    count += 1
+    nameArray.insert(count, name)
