@@ -21,6 +21,7 @@ print(f'{joke['value']}')
 # convert Kelvin degrees into Celsius.
 
 def fetch(city):
+    # this is a really fake api key don't try to use it
     apiKey = "bfda36693f3141f05c906f6ee275bfdc"
     response = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={apiKey}")
     return response.json()
