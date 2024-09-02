@@ -39,7 +39,7 @@ class Car:
     # Method call car.drive(1.5) increases the travelled distance to 2090 km.
 
     def drive(self, hours):
-        self.distance = hours * self.speed
+        self.distance += hours * self.speed
 
 def main():
     newCar = Car('ABC-123', 142)
@@ -73,22 +73,23 @@ def main():
     for i in range(1,11):
         carArray.append(Car(f'ABC-{i}',random.randint(100, 200)))
 
-    print('race started')
     raceTime = 0
-    while True:
+    raceEnded = False
+    while not raceEnded:
         raceTime += 1
         for car in carArray:
             car.accelerate(random.randint(-10,15))
             car.drive(1)
 
         if any(car.distance >= 10000 for car in carArray):
+            raceEnded = True
             break
 
     print("\ncar race results:")
-    print("{:15s} {:10s} {:10s}".format("registration", "max speed", "distance"))
-    print("-" * 40)
+    print("{:15s} | {:10s} | {:10s}".format("registration", "max speed", "distance"))
+    print("-" * 50)
     for car in carArray:
-        print("{:15s} {:10d} {:10.2f} km".format(car.registrationNumber, car.maxSpeed, car.distance))
+        print("{:15s} | {:10d} | {:11.2f} km".format(car.registrationNumber, car.maxSpeed, car.distance))
 
 main()
 
