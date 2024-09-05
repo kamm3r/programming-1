@@ -6,22 +6,24 @@ import mysql.connector
 
 def connectToDatabase():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="root",
-        database="airport"
+        user='root',
+        password='root',
+        host='localhost',
+        database='flight_game',
+        charset='utf8mb4',
+        collation='utf8mb4_general_ci'
     )
 
 def fetchIcao(icao):
-    connection = connectToDatabase()
-    cursor = connection.cursor(dictionary=True)
-    cursor.execute(f"SELECT name, municipality FROM airport WHERE ident = '{icao}'")
-    airport = cursor.fetchone()
-
-    cursor.close()
-    connection.close()
-
-    return airport
+    try:
+        connection = connectToDatabase()
+        print('Connected to MariaDB successfully!')
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT name, municipality FROM airport WHERE ident = '{icao}'")
+        response = cursor.fetchone()
+        return response
+    except mysql.connector.Error as error:
+        print(f"Error connecting to database: {error}")
 
 # Write a program that asks the user to enter the area code (for example FI)
 # and prints out the airports located in that country ordered by airport type.
@@ -29,14 +31,18 @@ def fetchIcao(icao):
 
 def fetchCountry(country):
     connection = connectToDatabase()
-    cursor = connection.cursor(dictionary=True)
-    cursor.execute(f"SELECT type, COUNT(*) AS count FROM airport WHERE iso_country = '{country}' GROUP BY type ORDER BY count DESC")
-    airports = cursor.fetchall()
+    try:
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT type, COUNT(*) AS count FROM airport WHERE iso_country = '{country}' GROUP BY type ORDER BY count DESC")
+        response = cursor.fetchall()
 
-    cursor.close()
-    connection.close()
+        return response
+    except mysql.connector.Error as error:
+        print(f"Error connecting to database: {error}")
+    finally:
+        if connection:
+            connection.close()
 
-    return airports
 
 # Write a program that asks the user to enter the ICAO codes of two airports.
 # The program prints out the distance between the two airports in kilometers.
@@ -68,12 +74,16 @@ def main():
 
 
     if airportIcao:
-        print(f"Name: {airportIcao['name']}")
-        print(f"Location: {airportIcao['municipality']}")
-    elif airportCountry:
+        print(f"Name: {airportIcao[0]}")
+        print(f"Location: {airportIcao[1]}")
+    else:
+        print("Airport not found")
+
+    if airportCountry:
         for airport in airportCountry:
-            print(f"{airport['type']}: {airport['count']}")
-    elif airportCoordinates:
+            print(f"{airport[0]}: {airport[1]}")
+
+    if airportCoordinates:
         icao2 = input("Enter ICAO code of the second airport: ")
         airportCoordinates2 = fetchCoordinates(icao2)
         if airportCoordinates2:
@@ -83,7 +93,5 @@ def main():
             print(f"Distance between the airports: {distance:.2f} km")
         else:
             print("Second airport not found")
-    else:
-        print("Airport not found")
 
 main()
