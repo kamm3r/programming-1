@@ -5,6 +5,7 @@
 # The response must be in the format of {"Number":31, "isPrime":true}.
 
 from flask import Flask
+from ex7 import connectToDatabase
 
 app = Flask(__name__)
 
@@ -35,3 +36,15 @@ def prime_number(num):
 # For example, the GET request for EFHK would be:
 # http://127.0.0.1:5000/airport/EFHK. The response must be in the format of:
 # {"ICAO":"EFHK", "Name":"Helsinki-Vantaa Airport", "Location":"Helsinki"}.
+
+@app.route("/airport/<string:icao>")
+def airport(icao):
+    connection = connectToDatabase()
+    cursor = connection.cursor(dictionary=True)
+    cursor.execute(f"SELECT name, municipality FROM airport WHERE ident = '{icao}'")
+    airport = cursor.fetchone()
+
+    cursor.close()
+    connection.close()
+
+    return {"ICAO": icao, "Name": airport['name'], "Location": airport['municipality']}
