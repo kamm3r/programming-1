@@ -40,11 +40,8 @@ def prime_number(num):
 @app.route("/airport/<string:icao>")
 def airport(icao):
     connection = connectToDatabase()
-    cursor = connection.cursor(dictionary=True)
+    cursor = connection.cursor()
     cursor.execute(f"SELECT name, municipality FROM airport WHERE ident = '{icao}'")
     airport = cursor.fetchone()
-
-    cursor.close()
-    connection.close()
 
     return {"ICAO": icao, "Name": airport['name'], "Location": airport['municipality']}
