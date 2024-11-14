@@ -1,3 +1,4 @@
+const body = document.body;
 const app = document.querySelector("#app");
 
 function Button(text, action, disabled = false) {
@@ -8,31 +9,39 @@ function Button(text, action, disabled = false) {
   return button;
 }
 
+const cachedFilenames = new Set();
+
 function loadJSFile(file) {
   return () => {
-    const existingScripts = document.querySelector(`script[src="${file}"]`);
-    if (existingScripts) {
-      existingScripts.remove();
-      console.log(`unloaded previousscript: ${file}`);
+    for (const previousfile of cachedFilenames.values()) {
+      if (previousfile) {
+        console.log(`unloaded previousscript: ${previousfile}`);
+        const existingScripts = document.querySelector(
+          `script[src="${previousfile}"]`
+        );
+        if (existingScripts) {
+          existingScripts.parentNode.removeChild(existingScripts);
+          cachedFilenames.delete(previousfile);
+        }
+      }
     }
     const script = document.createElement("script");
-    script.src = file;
     script.type = "module";
-    app.appendChild(script);
+    script.src = file;
+    cachedFilenames.add(file);
+    body.appendChild(script);
     console.log(`Loaded script: ${file}`);
   };
 }
-
-const module1Button = Button("Module 1", loadJSFile("./ext1.js"));
-const module2Button = Button("Module 2", loadJSFile("./ext2.js"));
-const module3Button = Button("Module 3", loadJSFile("./ext3.js"), true);
-const module4Button = Button("Module 4", loadJSFile("./ext4.js"), true);
 
 app.innerHTML = `
   <h1>JavaScript Assignment</h1>
   <p>Click on the buttons below to load the modules.</p>
 `;
-app.appendChild(module1Button);
-app.appendChild(module2Button);
-app.appendChild(module3Button);
-app.appendChild(module4Button);
+for (let i = 1; i < 5; ++i) {
+  if (i === 4) {
+    app.append(Button(`Module ${i}`, loadJSFile(`./ext${i}.js`), true));
+  } else {
+    app.append(Button(`Module ${i}`, loadJSFile(`./ext${i}.js`)));
+  }
+}
