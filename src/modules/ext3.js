@@ -1,11 +1,16 @@
 "use strict";
 
-const app = document.querySelector("#app");
+import { h } from "../core/pragma";
+
+const app = document.querySelector("#root");
+const section = document.querySelector(".hello");
 const ul = document.createElement("ul");
 const ul2 = document.createElement("ul");
 const ul3 = document.createElement("ul");
 const select = document.createElement("select");
 const article = document.createElement("article");
+const h2 = document.createElement("h2");
+h2.innerText = "Module 3. BOM, DOM and events";
 
 // Open t1 folder in your IDE/editor. Add HTML by using innerHTML property (2p)
 // Add the following HTML code to the element with id="target"
@@ -220,26 +225,35 @@ alertButton.addEventListener("click", () => {
 // when user mouses over <p id="trigger"> change the picture of <img id="target"> form picA.jpg to picB.jpg
 // when user mouses off, change the picture back to original
 
+const target = document.createElement("figure");
 const trigger = document.createElement("p");
 trigger.id = "trigger";
 trigger.innerText = "Hover over me";
+const picA =
+  "https://raw.githubusercontent.com/ilkkamtk/module3-starters/refs/heads/main/t7/img/picA.jpg";
+const picB =
+  "https://raw.githubusercontent.com/ilkkamtk/module3-starters/refs/heads/main/t7/img/picB.jpg";
 
-const target = document.createElement("img");
-target.id = "target";
-target.src = "picA.jpg";
-target.alt = "picA.jpg";
+const img = document.createElement("img");
+img.style.width = "100%";
+img.id = "target";
+img.src = picA;
+img.alt = "picA.jpg";
 
 trigger.appendChild(target);
 
 trigger.addEventListener("mouseover", () => {
-  target.src = "picB.jpg";
-  target.alt = "picB.jpg";
+  img.src = picB;
+  img.alt = "picB.jpg";
 });
 
 trigger.addEventListener("mouseout", () => {
-  target.src = "picA.jpg";
-  target.alt = "picA.jpg";
+  img.src = picA;
+  img.alt = "picA.jpg";
 });
+
+target.style.maxWidth = "400px";
+target.appendChild(img);
 
 // Open t8 folder in your IDE/editor. Make a simple calculator. (4p)
 // There are two input fields where user enters numbers. Based on the drop-down list,
@@ -420,15 +434,21 @@ for (const pic of picArray) {
 
   articles.appendChild(newarticle);
 }
+const diver = document.createElement("div");
 
-app.appendChild(ul);
-app.appendChild(ul2);
-app.appendChild(ul3);
-app.appendChild(select);
-app.appendChild(article);
-app.appendChild(alertButton);
-app.appendChild(trigger);
-app.appendChild(calculator);
-app.appendChild(div);
-app.appendChild(nameForm);
-app.appendChild(articles);
+diver.append(
+  h2,
+  ul,
+  ul2,
+  ul3,
+  select,
+  article,
+  alertButton,
+  trigger,
+  calculator,
+  div,
+  nameForm,
+  articles
+);
+section.prepend(diver);
+app.appendChild(section);

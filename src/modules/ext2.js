@@ -1,8 +1,9 @@
 "use strict";
 
-import { numberRange } from "./utils.js";
+import { numberRange } from "../core/utils.js";
 
-const app = document.querySelector("#app");
+const app = document.querySelector("#root");
+const section = document.querySelector(".hello");
 const p1 = document.createElement("p");
 const p2 = document.createElement("p");
 const p3 = document.createElement("p");
@@ -13,6 +14,8 @@ const p7 = document.createElement("p");
 const p8 = document.createElement("p");
 const p9 = document.createElement("p");
 const p10 = document.createElement("p");
+const h2 = document.createElement("h2");
+h2.innerText = "Module 2. Arrays and functions";
 
 // Write a program that prompts the user for five numbers and prints them in the reverse
 // order they were entered. Print the result to the console.(2p)
@@ -303,13 +306,7 @@ for (let i = 0; i < voters; ++i) {
 
 printResults();
 
-app.appendChild(p1);
-app.appendChild(p2);
-app.appendChild(p3);
-app.appendChild(p4);
-app.appendChild(p5);
-app.appendChild(p6);
-app.appendChild(p7);
-app.appendChild(p8);
-app.appendChild(p9);
-app.appendChild(p10);
+const div = document.createElement("div");
+div.append(h2, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
+section.prepend(div);
+app.appendChild(section);

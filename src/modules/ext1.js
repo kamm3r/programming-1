@@ -1,5 +1,7 @@
 "use strict";
-const app = document.querySelector("#app");
+
+const app = document.querySelector("#root");
+const section = document.querySelector(".hello");
 const p1 = document.createElement("p");
 const p2 = document.createElement("p");
 const p3 = document.createElement("p");
@@ -9,6 +11,10 @@ const p6 = document.createElement("p");
 const p7 = document.createElement("p");
 const p8 = document.createElement("p");
 const list = document.createElement("ul");
+const h2 = document.createElement("h2");
+h2.innerText =
+  "Module 1. Interactive programs + Conditional expressions and loops";
+
 // Write a program that logs to the console this text:
 // I'm printing to console!
 console.log("I'm printing to console!");
@@ -190,12 +196,7 @@ ${sumeyes} with ${dicecount}
 dice is ${probability.toFixed(2)}%
 `;
 
-app.appendChild(p1);
-app.appendChild(p2);
-app.appendChild(p3);
-app.appendChild(p4);
-app.appendChild(p5);
-app.appendChild(p6);
-app.appendChild(p7);
-app.appendChild(p8);
-app.appendChild(list);
+const div = document.createElement("div");
+div.append(h2, p1, p2, p3, p4, p5, p6, p7, p8, list);
+section.prepend(div);
+app.appendChild(section);
